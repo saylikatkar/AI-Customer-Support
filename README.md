@@ -51,36 +51,38 @@ An enterprise-grade, browser-based AI voice customer support web application bui
 ## 🏛 System Architecture
 
 ```mermaid
+
 graph TD
     User([Customer / Evaluator]) <-->|Microphone / Speakers| UI[Aura Skincare React Frontend]
 
-    subgraph "Frontend Layer (React 19 + Vite + Tailwind)"
-        UI --> VM[Voice State Machine: Idle/Listening/Thinking/Speaking]
-        UI --> TR[Live Transcript & Waveform Visualizer]
-        UI --> SO[Sample Orders Panel: ORD-101, 102, 103]
-        UI --> PC[Post-Call Summary Modal]
+    subgraph Frontend["Frontend Layer - React 19 + Vite + TypeScript"]
+        UI --> VM[Voice State: Listening / Thinking / Speaking]
+        UI --> TR[Live Transcript]
+        UI --> SO[Sample Orders: ORD-101, ORD-102, ORD-103]
+        UI --> PC[Post-Call Summary]
     end
 
-    UI <-->|HTTP REST & WebSockets| Server[Node.js Express + TSX Backend Server]
+    UI <-->|HTTP REST / WebSockets| Server[Node.js + Express + TypeScript Backend]
 
-    subgraph "Backend Orchestration Layer"
-        Server --> Auth[Request Validation & CORS]
-        Server --> Orchestrator[AI Reasoning & Function Calling Engine]
-        Server --> PolicyEngine[Deterministic Policy Validator]
-        Server --> DB[(In-Memory / Postgres Database)]
+    subgraph Backend["Backend Orchestration Layer"]
+        Server --> Validation[Request Validation and CORS]
+        Server --> Orchestrator[AI Reasoning and Function Calling]
+        Server --> Policy[Business Policy Validation]
+        Server --> DB[(Order and Call Data Store)]
     end
 
-    subgraph "AI & Speech Services"
-        Orchestrator <-->|Tools & Intent Reasoning| GeminiFlash[Gemini 3.8 Flash]
-        Orchestrator <-->|Speech Synthesis| GeminiTTS[Gemini 3.8 Flash Lite TTS]
-        Orchestrator <-->|Audio Transcription| GeminiTranscribe[Gemini 3.5 Transcribe]
+    subgraph AI["AI and Speech Services"]
+        Orchestrator <-->|AI Requests and Tool Calls| Gemini[Google Gemini]
+        Orchestrator <-->|Text-to-Speech| TTS[Voice Generation]
+        Orchestrator <-->|Speech-to-Text| STT[Speech Recognition]
     end
 
-    subgraph "Database Store"
-        DB --> OrdersTable[Orders: ORD-101, ORD-102, ORD-103]
-        DB --> CallsTable[Calls & Transcripts]
-        DB --> SummariesTable[Structured JSON Summaries]
+    subgraph Data["Stored Data"]
+        DB --> Orders[Order Details]
+        DB --> Calls[Calls and Transcripts]
+        DB --> Summaries[Call Summaries]
     end
+
 ```
 
 ---
