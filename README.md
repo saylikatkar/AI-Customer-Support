@@ -175,21 +175,29 @@ Open your browser at `http://localhost:3000`.
 
 ## 💬 Technical Evaluation & Architecture Q&A
 
-### 1. Why was this architecture and technology stack selected?
-We selected a unified full-stack TypeScript architecture (React 19 + Express + Vite + `@google/genai`). This eliminates cross-language serialization friction, ensures end-to-end type safety across client and server tool definitions, and enables sub-50ms deterministic policy validation. Express mounts the Vite middleware during development and serves optimized production assets in production, allowing seamless deployment to any container or cloud environment.
+### 1. Why did you choose this tech stack?
 
-### 2. What was the most difficult technical part, and how was it solved?
-The most difficult technical challenge was synchronizing the voice conversation lifecycle: managing browser microphone permissions, handling intermittent speech recognition states, executing server-side database tool calls asynchronously, and playing back natural audio without speech overlaps. We solved this with a centralized React hook (`useVoiceAgent`) implementing an explicit state machine (`idle` ➔ `connecting` ➔ `listening` ➔ `thinking` ➔ `speaking` ➔ `ended`). Audio playback uses a high-priority base64 WAV stream from Gemini TTS with an automated fallback to the browser's speech synthesis engine.
+We used React, TypeScript, Express, Vite, and Google Gemini to build the application. React helps us create the user interface, while Express handles backend requests. TypeScript helps us catch coding errors, and Vite makes development faster. Using TypeScript for both the frontend and backend also makes it easier to connect different parts of the application.
 
-### 3. What would be improved with another week of development?
-- **Gemini Live Multimodal WebSockets:** Transitioning from turn-based audio synthesis to full duplex audio streaming via Gemini Live (`gemini-3.8-live`) with server-side VAD (Voice Activity Detection) and user interruption handling.
-- **WhatsApp Support Linkage:** Enabling post-call summaries and return photo uploads to be sent directly to the customer's WhatsApp using Twilio or Meta Business API.
-- **Persistent Postgres Storage:** Adding Drizzle ORM migrations with PostgreSQL for multi-region order replication.
+### 2. What was the most difficult technical part, and how did you solve it?
 
-### 4. What would change if the system handled 1,000 customer conversations per day?
-- **Distributed State:** Replacing in-memory session caches with Redis for WebSocket session state and active call locks.
-- **TTS Audio Caching:** Pre-synthesizing and CDN-caching standardized policy responses (such as standard shipping explanations) to save token quota and reduce latency to <10ms.
-- **Rate Limiting & Queueing:** Implementing BullMQ worker queues for post-call analytics and summary generation to insulate real-time voice workers from background LLM workloads.
+The most difficult part was managing the voice conversation smoothly. We had to handle microphone permissions, understand the user's speech, process requests, and play the agent's voice without interruptions. We solved this by creating different states for the agent, such as listening, thinking, and speaking. We also added a backup option using the browser's speech feature if the main voice system fails.
+
+### 3. What would you improve with another week of development?
+
+With one more week, I would focus on three improvements:
+
+- **Better voice conversations:** Make conversations more natural and allow users to interrupt the agent while it is speaking.
+- **WhatsApp integration:** Send call summaries and allow customers to share photos of damaged products through WhatsApp.
+- **Database improvements:** Use PostgreSQL to store orders and conversation details more reliably.
+
+### 4. What would you change if the system handled 1,000 customer conversations per day?
+
+If the system handled 1,000 conversations daily, I would make these improvements:
+
+- **Better session management:** Use Redis to manage active conversations and their data more efficiently.
+- **Faster voice responses:** Save commonly used voice responses so they can be played quickly without generating them every time.
+- **Background task processing:** Use a queue system to handle tasks such as generating call summaries separately, so they do not slow down ongoing conversations.
 
 ---
 
