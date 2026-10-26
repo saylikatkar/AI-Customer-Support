@@ -124,8 +124,4 @@ If the system handled 1,000 conversations daily, I would make these improvements
 
 ---
 
-  *Aria enforces the strictly-above-₹499 rule: exactly ₹499 incurs the ₹50 fee; above ₹499 qualifies for free delivery.*
-- **[3:00 - 3:45] Post-Call Analysis & Structured JSON Summary:**
-  *Click 'End Call'. Inspect the automatically generated Post-Call Summary modal with verified Customer Intent, Order ID, Resolution Status, Executive Summary, and Tool Trace.*
-- **[3:45 - 4:00] Wrap-up:**
-  *Highlight the 33/33 passing automated test suite and clean standalone branding.*
+ 
