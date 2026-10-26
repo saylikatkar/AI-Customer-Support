@@ -14,23 +14,6 @@ An enterprise-grade, browser-based AI voice customer support web application bui
 
 ---
 
-## 📋 Table of Contents
-1. [Project Overview & Key Features](#-project-overview--key-features)
-2. [Mermaid System Architecture](#-system-architecture)
-3. [Voice & Speech Pipeline](#-voice--speech-pipeline)
-4. [AI Tool-Calling & Reasoning Engine](#-ai-tool-calling--reasoning-engine)
-5. [Deterministic Brand Policy Enforcement](#-deterministic-brand-policy-enforcement)
-6. [Database Schema & Sample Order Test Suite](#-database-schema--sample-orders)
-7. [API Endpoint Reference](#-api-endpoint-reference)
-8. [Automated Test Results (33/33 Passed)](#-automated-test-results)
-9. [Windows PowerShell Setup & Local Development](#-windows-powershell-setup--local-development)
-10. [Deployment Guide (Vercel, Render, Cloud Run, Docker)](#-deployment-guide)
-11. [Technical Discussion & Architectural Questions](#-technical-discussion)
-12. [3–5 Minute Video Demo Script](#-demo-video-script)
-13. [Submission Checklist](#-submission-checklist)
-
----
-
 ## ✨ Project Overview & Key Features
 
 - **Real Voice Interaction:** Natural voice conversations via browser microphone (`Web Audio API` / `SpeechRecognition`) with voice playback powered by Gemini Speech Synthesis (`gemini-3.8-flash-lite-tts`) with Indian English cadence and browser fallback.
