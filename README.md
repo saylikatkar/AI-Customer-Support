@@ -6,8 +6,8 @@ An enterprise-grade, browser-based AI voice customer support web application bui
 
 ## 🌿 Live Application Access
 
-- **Public Deployed URL:** `https://ais-dev-a5avbwn5g6bytsakoihwfo-229204994252.asia-east1.run.app`
-- **Shared Production Link:** `https://ais-pre-a5avbwn5g6bytsakoihwfo-229204994252.asia-east1.run.app`
+- **Public Deployed URL:** `https://aria-customer-care-8472.ai.studio/`
+- **Shared Production Link:** `https://aria-customer-care-8472.ai.studio/`
 - **Application Title:** Aura Skincare | AI Voice Support
 - **AI Voice Persona:** Aria (Warm, friendly Indian English skincare specialist)
 - **Status:** Production Ready (33 Automated Tests Passing)
