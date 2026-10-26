@@ -10,7 +10,6 @@ An enterprise-grade, browser-based AI voice customer support web application bui
 - **Shared Production Link:** `https://aria-customer-care-8472.ai.studio/`
 - **Application Title:** Aura Skincare | AI Voice Support
 - **AI Voice Persona:** Aria (Warm, friendly Indian English skincare specialist)
-- **Status:** Production Ready (33 Automated Tests Passing)
 
 ---
 
@@ -68,68 +67,7 @@ graph TD
 
 ```
 
----
 
-## 🧪 Automated Test Results
-
-```text
-========================================
-  AURA SKINCARE TEST SUITE EXECUTION   
-========================================
-
---- 1. Sample Order Lookups ---
-  ✓ PASS: ORD-101 retrieval matches Priya Sharma, BlueDart, Out for Delivery
-  ✓ PASS: ORD-102 retrieval matches Rahul Verma, Delivered, ₹499
-  ✓ PASS: ORD-103 retrieval matches Ananya Patel, Processing, ₹850
-
---- 2. Invalid & Missing Order IDs ---
-  ✓ PASS: ORD-999 lookup fails gracefully with error message
-  ✓ PASS: Missing order_id fails gracefully
-
---- 3. Shipping Policy Boundaries ---
-  ✓ PASS: Strictly-above-₹499 rule: Exactly ₹499 incurs ₹50 shipping fee
-  ✓ PASS: Order of ₹500 qualifies for free delivery
-  ✓ PASS: Order of ₹699 qualifies for free delivery
-
---- 4. Cash on Delivery Boundaries ---
-  ✓ PASS: COD of ₹2,000 is eligible
-  ✓ PASS: Boundary check: COD of exactly ₹2,500 is eligible
-  ✓ PASS: COD above ₹2,500 (₹2,501) is ineligible
-
---- 5. Return & Refund Policy Boundaries ---
-  ✓ PASS: Boundary check: Exactly 7 days unopened is eligible for return
-  ✓ PASS: 8 days post-delivery is rejected (exceeds 7-day window)
-  ✓ PASS: Sunscreen received 14 days ago and opened (ORD-102 scenario) is strictly rejected
-  ✓ PASS: Boundary check: Damaged reported within 48h with photos is eligible for replacement
-  ✓ PASS: Damaged reported at 49h (exceeding 48h window) is rejected
-  ✓ PASS: Damaged reported within window without photos requires photos before approval
-
---- 6. Cancellation Eligibility & Operations ---
-  ✓ PASS: Order in Processing status is eligible for cancellation
-  ✓ PASS: Out for Delivery cannot be cancelled in system; doorstep refusal allowed
-  ✓ PASS: cancel_order executes successfully on Processing order ORD-103
-  ✓ PASS: ORD-103 status mutated in database to Cancelled
-  ✓ PASS: cancel_order refuses to cancel Out for Delivery order ORD-101
-
---- 7. AI Scenario Verification ---
-  ✓ PASS: Scenario: Where is order ORD-101? Aria retrieves BlueDart and Out for Delivery
-  ✓ PASS: Scenario: Track ORD-999 asks customer to verify ID
-  ✓ PASS: Scenario: Flight to Goa is politely redirected to Aura Skincare customer care
-  ✓ PASS: Scenario: Ambiguous "help me with my order" asks for the specific order ID
-  ✓ PASS: Scenario: How much is delivery? explains ₹50 fee and free shipping above ₹499
-  ✓ PASS: Scenario: COD for ₹2,000 confirmed within ₹2,500 limit
-
---- 8. Call Lifecycle, Transcripts & Summaries ---
-  ✓ PASS: Call created with active status and ID
-  ✓ PASS: Transcript chronologically stores entries
-  ✓ PASS: Call summary extracts ORDER_TRACKING and ORD-101
-  ✓ PASS: Call finalized with completed status and resolution_status RESOLVED
-  ✓ PASS: Finalizing call is idempotent
-
-========================================
-  RESULTS: 33 PASSED, 0 FAILED
-========================================
-```
 
 ---
 
@@ -186,21 +124,6 @@ If the system handled 1,000 conversations daily, I would make these improvements
 
 ---
 
-## 📹 Demo Video Script (3–5 Minutes)
-
-- **[0:00 - 0:45] Introduction & Branding:**
-  *"Welcome to Aura Skincare's AI Voice Customer Support portal. Aura Skincare is a premium organic Indian brand, and I am demonstrating Aria, our real-time voice assistant."*
-- **[0:45 - 1:30] Live Order Tracking (ORD-101):**
-  *Click 'Start Voice Call'. Say: 'Where is order ORD-101?'*
-  *Aria executes `get_order_details('ORD-101')`, announces Priya Sharma's Vitamin C Serum, BlueDart courier, and delivery scheduled by 6 PM today.*
-- **[1:30 - 2:15] Order Cancellation & Database Mutation (ORD-103 vs ORD-101):**
-  *Say: 'Can I cancel order ORD-101?'*
-  *Aria verifies that ORD-101 is Out for Delivery, refuses system cancellation per policy, and informs the user about doorstep refusal.*
-  *Say: 'Cancel order ORD-103'. Aria confirms it is in Processing status, executes `cancel_order`, and updates the status to Cancelled.*
-- **[2:15 - 3:00] Return Policy & Shipping Boundaries:**
-  *Say: 'I received my sunscreen 14 days ago and opened it. Can I return it?'*
-  *Aria validates that 14 days exceeds the 7-day return window and that opened items cannot be accepted for hygiene reasons.*
-  *Say: 'How much is delivery for an order worth ₹499?'*
   *Aria enforces the strictly-above-₹499 rule: exactly ₹499 incurs the ₹50 fee; above ₹499 qualifies for free delivery.*
 - **[3:00 - 3:45] Post-Call Analysis & Structured JSON Summary:**
   *Click 'End Call'. Inspect the automatically generated Post-Call Summary modal with verified Customer Intent, Order ID, Resolution Status, Executive Summary, and Tool Trace.*
