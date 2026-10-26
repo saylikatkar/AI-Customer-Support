@@ -162,11 +162,11 @@ Open your browser at `http://localhost:3000`.
 
 ### 1. Why did you choose this tech stack?
 
-We used React, TypeScript, Express, Vite, and Google Gemini to build the application. React helps us create the user interface, while Express handles backend requests. TypeScript helps us catch coding errors, and Vite makes development faster. Using TypeScript for both the frontend and backend also makes it easier to connect different parts of the application.
+I used React, TypeScript, Express, Vite, and Google Gemini to build the application. React helps create the user interface, while Express handles backend requests. TypeScript helps catch coding errors, and Vite makes development faster. Using TypeScript for both the frontend and backend also makes it easier to connect different parts of the application.
 
 ### 2. What was the most difficult technical part, and how did you solve it?
 
-The most difficult part was managing the voice conversation smoothly. We had to handle microphone permissions, understand the user's speech, process requests, and play the agent's voice without interruptions. We solved this by creating different states for the agent, such as listening, thinking, and speaking. We also added a backup option using the browser's speech feature if the main voice system fails.
+The most difficult part was managing the voice conversation smoothly. I had to handle microphone permissions, understand the user's speech, process requests, and play the agent's voice without interruptions. I solved this by creating different states for the agent, such as listening, thinking, and speaking. I also added a backup option using the browser's speech feature if the main voice system fails.
 
 ### 3. What would you improve with another week of development?
 
